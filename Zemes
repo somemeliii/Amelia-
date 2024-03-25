@@ -1,0 +1,158 @@
+import tkinter as tk
+from tkinter import ttk
+  
+ 
+LARGEFONT =("Verdana", 35)
+  
+class tkinterApp(tk.Tk):
+     
+    def __init__(self, *args, **kwargs): 
+         
+        tk.Tk.__init__(self, *args, **kwargs)
+         
+        container = tk.Frame(self)  
+        container.pack(side = "top", fill = "both", expand = True) 
+  
+        container.grid_rowconfigure(0, weight = 1)
+        container.grid_columnconfigure(0, weight = 1)
+  
+        self.frames = {}  
+  
+        for F in (StartPage, Page1, Page2):
+  
+            frame = F(container, self)
+  
+            self.frames[F] = frame 
+  
+            frame.grid(row = 0, column = 0, sticky ="nsew")
+  
+        self.show_frame(StartPage)
+  
+    def show_frame(self, cont):
+        frame = self.frames[cont]
+        frame.tkraise()
+
+#Sākumlapa? kut būs sveiciens un baziska informācija (canva 1.lapa)
+class StartPage(tk.Frame):
+    def __init__(self, parent, controller): 
+        tk.Frame.__init__(self, parent)
+         
+        label = ttk.Label(self, text ="Sākumlapa", font = LARGEFONT)
+         
+        label.grid(row = 0, column = 4, padx = 10, pady = 10)
+
+           <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+	<title>PyScript Demo</title>
+</head>
+<body>
+	<py-script>
+		sports = ["TheEarthory - is a well know site with best theories of  origin of Earth. About million of people  visit this site every year.",
+                          "This site will give you information about theories, history of earth, theories of people origin.",
+                          "And most interesting, that after you read websites information, you can pass a test, how good you know Earth theories. And after the test make your own theory, that maybe in some time will become a good story for others people at this website!",
+                          "Just scroll down and start  your jorney at our solar system and make your own theories!"]
+		for sport in sports:
+			print(f" - {TheEarthory}")
+	</py-script>
+</body>
+</html>
+  
+        button1 = ttk.Button(self, text ="Saite ar informāciju",
+        command = lambda : controller.show_frame(Page1))
+     
+        button1.grid(row = 1, column = 1, padx = 10, pady = 10)
+  
+        button2 = ttk.Button(self, text ="Tests",
+        command = lambda : controller.show_frame(Page2))
+     
+        button2.grid(row = 2, column = 1, padx = 10, pady = 10)
+  
+
+#Informācija par teorijam un vēsturi (canva 2-3.lapa)
+class Page1(tk.Frame):
+     
+    def __init__(self, parent, controller):
+         
+        tk.Frame.__init__(self, parent)
+        label = ttk.Label(self, text ="Saite ar teorijam", font = LARGEFONT)
+        label.grid(row = 0, column = 4, padx = 10, pady = 10)
+
+       
+        button1 = ttk.Button(self, text ="Sākumlapa",
+                            command = lambda : controller.show_frame(StartPage))
+     
+        button1.grid(row = 1, column = 1, padx = 10, pady = 10)
+  
+        button2 = ttk.Button(self, text ="Tests",
+                            command = lambda : controller.show_frame(Page2))
+     
+        button2.grid(row = 2, column = 1, padx = 10, pady = 10)
+  
+  
+  
+#Tests? kuru tu ar izdarīt (canva 4.lapa) Ne ļoti zinām ? ka parizi darīt testus? lai ar to var parslēgt ar pogu, tāpēc izdarījam tikai pogu ar kuru tu var sākt testu
+class Page2(tk.Frame): 
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = ttk.Label(self, text ="Tests", font = LARGEFONT)
+        label.grid(row = 0, column = 4, padx = 10, pady = 10)
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+	<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+	<title>PyScript Demo</title>
+</head>
+<body>
+	<h1>Tests,
+	<py-script>
+		name = "Test about theories you just read!"
+		print(name)
+	</py-script> 
+	</h1>
+</body>
+</html>
+
+from tkinter import *
+from tkinter import messagebox
+top = Tk()
+top.geometry("100x100")
+def helloCallBack():
+   msg=messagebox.showinfo( "Tests informer", "Sāc darīt testu tagat? tikai piespež pogu!")
+B = Button(top, text ="Tests!", command = helloCallBack)
+B.place(x=50,y=50)
+top.mainloop()
+
+        button1 = ttk.Button(self, text ="Saite ar informāciju",
+                            command = lambda : controller.show_frame(Page1))
+     
+        button1.grid(row = 1, column = 1, padx = 10, pady = 10)
+  
+        button2 = ttk.Button(self, text ="Sākumlapa",
+                            command = lambda : controller.show_frame(StartPage))
+     
+        button2.grid(row = 2, column = 1, padx = 10, pady = 10)
+  
+
+app = tkinterApp()
+app.mainloop()
+
+
+
+
+
+
+
+#https://www.tutorialspoint.com/python/python_cgi_programming.htm
+#https://www.geeksforgeeks.org/tkinter-application-to-switch-between-different-page-frames/
+#https://www.geeksforgeeks.org/create-basic-webpage-with-pyscript/
